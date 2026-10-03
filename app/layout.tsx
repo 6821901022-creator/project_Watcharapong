@@ -1,0 +1,46 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Noto_Sans_Thai } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const notoThai = Noto_Sans_Thai({
+  variable: "--font-thai",
+  subsets: ["thai", "latin"],
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "Startic SHOP",
+    template: "%s | Startic SHOP",
+  },
+  description: "ร้านค้าออนไลน์และบทความล่าสุดจาก Startic SHOP",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="th">
+      <body
+        className={`layout ${geistSans.variable} ${geistMono.variable} ${notoThai.variable}`}
+      >
+        <Navbar />
+        <main className="main-content">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
